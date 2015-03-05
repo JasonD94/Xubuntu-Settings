@@ -1,0 +1,83 @@
+#!/bin/sh
+
+#*************************************************
+#* Created by Jason Downing, December 6th, 2014
+#* MIT Licensed - do what you want with this.
+#*************************************************
+
+######################################################################
+# 0. Comment out programs you don't want installed (note -y argument!)
+# 1. Mark this script as excutable
+# 2. Open terminal, type ./install_script_v2
+# 3. ???
+# 4. PROFIT!
+######################################################################
+
+# Add a few repos (uncomment if you run this for the first time!)
+sudo apt-add-repository ppa:danielrichter2007/grub-customizer
+sudo apt-add-repository ppa:webupd8team/sublime-text-3
+
+# This is for Chrome
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+
+# Update the repos.
+sudo apt-get -y update
+
+# Get python stuff.
+sudo apt-get -y install python python-gtk2 python-xlib python-dbus python-wnck git
+
+# MAKE SURE TO DOWNLOAD QUICKTILE.
+git clone https://github.com/ssokolow/quicktile.git ~/Quicktile
+
+# Then run the following from the quicktile folder (~/quicktile/):
+cd ~/Quicktile
+sudo ./setup.py install
+
+# Also change the keybindings to "Shift" instead of "Alt"!
+# And use the auto_start_quicktile script to get it to autorun.
+# Also make an autostart entry in the session settings page.
+
+# ****************************************************************
+#  Razer Death Adder Config stuff (Only the command line works)
+#  Also don't forget to use the autostart razer script!
+# ****************************************************************
+#sudo apt-get -y install python3 libusb-1.0.0-dev python-pyside cmake
+
+# Update Locale so underscores show up first
+sudo update-locale LC_COLLATE=C
+
+# Screensaver for Xubuntu
+sudo apt-get -y install xscreensaver xscreensaver-gl-extra xscreensaver-data-extra
+
+# Get Sublime (also awesome)
+sudo apt-get -y install sublime-text-installer
+
+# Chrome
+sudo apt-get -y install google-chrome-stable
+
+# Programming stuff
+sudo apt-get -y install g++ openjdk-6-jdk gedit curl geany
+
+# System monitors - just cuz there awesome.
+sudo apt-get -y install nmon glances htop lm-sensors hddtemp \
+psensor lm-sensors hddtemp psensor gsmartcontrol
+
+# Wine
+sudo apt-get -y install wine
+
+# Disk related
+sudo apt-get -y install grub-customizer gparted filezilla rsync unetbootin 
+
+# Fun stuff.
+sudo apt-get -y install steam pinta gimp vlc neverball teg pychess shutter shutter sl
+
+# Security
+sudo apt-get -y install keepassx nmap wireshark virtualbox
+
+# Office
+sudo apt-get -y install libreoffice
+
+# Other apps that are useful (KDE apps Konsole and Kate are awesome - but
+# they do pull down a ton of KDE dependencies though!
+sudo apt-get -y install synergy konsole kate
